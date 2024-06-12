@@ -1,8 +1,6 @@
 import os
 import flags/flags
-import fn/cacheClean
-import fn/cacheThumbnails
-import fn/currentVersion
+import fn/[cacheClean, cacheThumbnails, currentVersion]
 
 proc processFlags(params: seq[string]): tuple[cache: bool, thumbnails: bool, help: bool, version: bool] =
   (flagCache in params, flagThumbnails in params, flagHelp in params, flagVersion in params)
