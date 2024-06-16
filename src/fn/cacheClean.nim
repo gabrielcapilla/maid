@@ -1,8 +1,8 @@
 import os, strutils
 
 const
-  homeDir = getHomeDir()
-  cacheDir = joinPath(homeDir, ".cache")
+  homeDir: string = getHomeDir()
+  cacheDir: string = joinPath(homeDir, ".cache")
 
 proc cleanCacheDir(dir: string) =
   if dirExists(dir):
