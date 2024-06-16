@@ -2,7 +2,7 @@
 
 `maid` is a small and incredibly fast *cleaner* written fully in `nim👑` without any dependencies. Why `nim👑`? Because it's fast and simple. `maid` helps to clean unwanted traces the user leaves on the system. It can remove and clean out caches. `maid` helps to clean unwanted traces from Plasma and KDE applications users leave on the system.
 
-What `maid` can cleans?
+What can the `maid` clean?
 
 - Clipboard
 - `~/.cache` folder
