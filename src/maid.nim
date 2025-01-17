@@ -1,30 +1,29 @@
-import os
-import flags/flags
-import fn/[cacheClean, cacheThumbnails, currentVersion, clearHistory, clearClipboard]
-
-proc processFlags(params: seq[string]): tuple[history: bool, clipboard: bool, thumbnails: bool, clear: bool, help: bool, version: bool] =
-  (flagHistory in params, flagClipboard in params, flagThumbnails in params, flagClear in params, flagHelp in params, flagVersion in params)
+import std/os
+import flags
+import commands/[cacheClean, cacheThumbnails, clearClipboard, clearHistory, version]
 
 proc main() =
-  let params: seq[string] = commandLineParams()
-  let (history, clipboard, thumbnails, clear, help, version) = processFlags(params)
+  let params = commandLineParams()
+  let flags = parseFlags(params)
 
-  if help:
-    flags.print()
-  if version:
-    currentVersion.print()
-  if history:
-    clearHistory.clean()
-  if clipboard:
-    clearClipboard.clean()
-  if thumbnails:
-    cacheThumbnails.clean()
-  if clear:
-    cacheClean.clean()
-    clearHistory.clean()
-    clearClipboard.clean()
+  if flags.help:
+    printHelp()
+  elif flags.version:
+    printVersion()
+  elif flags.clear:
+    cleanCache()
+    clearHistory()
+    clearClipboard()
+  else:
+    if flags.history:
+      clearHistory()
+    if flags.clipboard:
+      clearClipboard()
+    if flags.thumbnails:
+      cleanThumbnails()
 
-  if not (clear or history or clipboard or thumbnails or help or version):
-    flags.print()
+    if not (flags.history or flags.clipboard or flags.thumbnails or flags.clear):
+      printHelp()
 
-main()
+when isMainModule:
+  main()
