@@ -1,10 +1,8 @@
-import std/os
-import flags
-import commands/[cacheClean, cacheThumbnails, clearClipboard, clearHistory, version]
+import
+  commands/[cacheClean, cacheThumbnails, clearClipboard, clearHistory, flags, version]
 
 proc main() =
-  let params = commandLineParams()
-  let flags = parseFlags(params)
+  let flags = parseFlags()
 
   if flags.help:
     printHelp()
