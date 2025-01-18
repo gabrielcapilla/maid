@@ -13,7 +13,7 @@ proc parseFlags*(): Flags =
   for kind, key, val in p.getopt():
     case kind
     of cmdArgument:
-      discard # Ignorar argumentos posicionales
+      discard
     of cmdLongOption, cmdShortOption:
       case key
       of "help", "h":
@@ -29,9 +29,9 @@ proc parseFlags*(): Flags =
       of "thumbnails", "t":
         result.thumbnails = true
       else:
-        discard # Ignorar opciones desconocidas
+        discard
     of cmdEnd:
-      discard # Fin del análisis
+      discard
 
 proc printHelp*() =
   echo """
