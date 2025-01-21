@@ -2,7 +2,7 @@ import
   commands/[cacheClean, cacheThumbnails, clearClipboard, clearHistory, flags, version]
 
 proc main() =
-  let flags = parseFlags()
+  let flags: Flags = parseFlags()
 
   if flags.help:
     printHelp()
