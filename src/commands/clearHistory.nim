@@ -1,13 +1,22 @@
 import std/os
 
-const
+let
   homeDir: string = getHomeDir()
-  bashHistory: string = joinPath(homeDir, ".bash_history")
-  fishHistory: string = joinPath(homeDir, ".local", "share", "fish", "fish_history")
+  historyFiles: seq[string] =
+    @[
+      joinPath(homeDir, ".bash_history"),
+      joinPath(homeDir, ".local", "share", "fish", "fish_history"),
+    ]
 
 proc clearHistory*() =
-  ## Clear the history
-  if fileExists(bashHistory):
-    removeFile(bashHistory)
-  if fileExists(fishHistory):
-    removeFile(fishHistory)
+  ## Removes shell history files, handling file-specific errors
+  for filePath in historyFiles:
+    try:
+      if fileExists(filePath):
+        removeFile(filePath)
+      else:
+        stderr.writeLine "Warning: File not found - ", filePath
+    except OSError as e:
+      stderr.writeLine "Error deleting '", filePath, "': ", e.msg
+    except IOError as e:
+      stderr.writeLine "IO error with '", filePath, "': ", e.msg
