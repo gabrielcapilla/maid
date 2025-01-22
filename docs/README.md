@@ -39,7 +39,7 @@ nimble uninstall maid
 | Option | Description |
 |---|---|
 |`-c`, `--clear`| Run all available cleanups |
-|`-h`, `--history`| Clear Bash & Fish history|
+|`-sh`, `--history`| Clear Bash & Fish history|
 |`-k`, `--clipboard`| Clean the clipboard|
 |`-t`, `--thumbnails`| Delete cached thumbnails|
 |`-h`, `--help`| Shows support |
