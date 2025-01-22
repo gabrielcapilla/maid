@@ -18,11 +18,11 @@ proc parseFlags*(): Flags =
       case key
       of "help", "h":
         result.help = true
-      of "clear":
+      of "clear", "c":
         result.clear = true
       of "version", "v":
         result.version = true
-      of "history":
+      of "history", "sh":
         result.history = true
       of "clipboard", "k":
         result.clipboard = true
@@ -40,8 +40,8 @@ Usage: maid [options]
 Options:
   -h, --help       Show this help message
   -v, --version    Show the version of the utility
-  --clear          Clear ALL unwanted tracers users leave on the system
-  --history        Clear the history of commands (bash & fish)
+  -c, --clear      Clear ALL unwanted tracers users leave on the system
+  -sh, --history   Clear the history of commands
   -k, --clipboard  Clear the clipboard
   -t, --thumbnails Clear all cached thumbnails
   """
